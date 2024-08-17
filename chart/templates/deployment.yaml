@@ -17,6 +17,8 @@ spec:
         image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
         pullPolicy: {{ .Values.image.pullPolicy }}
         command: ["/bin/stock-exporter"]
+        ports:
+          - containerPort: 9090
         resources:
           limits:
             cpu: {{ .Values.resources.limits.cpu }}

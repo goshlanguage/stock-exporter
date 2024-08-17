@@ -1,0 +1,5 @@
+apiVersion: v2
+name: stock-exporter
+description: A Helm chart for Kubernetes to deploy a stock price exporter.
+version: 0.1.0
+appVersion: "1.0.0"

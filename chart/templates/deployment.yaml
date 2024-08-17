@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: stock-exporter
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: stock-exporter
+  template:
+    metadata:
+      labels:
+        app: stock-exporter
+    spec:
+      containers:
+      - name: stock-exporter
+        image:
+          repository: {{ .Values.image.repository }}
+          pullPolicy: {{ .Values.image.pullPolicy }}
+          tag: {{ .Values.image.tag }}
+        command: ["/bin/stock-exporter"]
+        resources:
+          limits:
+            cpu: {{ .Values.resources.limits.cpu }}
+            memory: {{ .Values.resources.limits.memory }}
+          requests:
+            cpu: {{ .Values.resources.requests.cpu }}
+            memory: {{ .Values.resources.requests.memory }}

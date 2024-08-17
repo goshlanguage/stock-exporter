@@ -14,9 +14,8 @@ spec:
     spec:
       containers:
       - name: stock-exporter
-        image:
-          repository: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
-          pullPolicy: {{ .Values.image.pullPolicy }}
+        image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+        pullPolicy: {{ .Values.image.pullPolicy }}
         command: ["/bin/stock-exporter"]
         resources:
           limits:

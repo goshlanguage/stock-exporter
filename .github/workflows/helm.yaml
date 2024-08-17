@@ -1,0 +1,45 @@
+name: Build and release Helm Chart
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+
+  build:
+    name: Publish helm
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+      with:
+        submodules: true  # Fetch Hugo themes (true OR recursive)
+        fetch-depth: 0    # Fetch all history for .GitInfo and .Lastmod
+    
+    - name: Build helm indexes and publish page
+      run: |
+        mkdir release
+
+        # package all charts
+        ls charts | while read chart; do
+          cd charts/$chart
+          helm dep up
+          cd -
+
+          helm package charts/$chart -d release/; 
+        done
+
+        helm repo index release --url https://goshlanguage.github.io/release
+
+        mkdir publish
+        mv release publish/
+
+        # another hack to fix the index paths
+        sed -i 's|https://goshlanguage.github.io/release/|https://goshlanguage.github.io/stock-exporter/release/|g' publish/release/index.yaml
+
+    - name: Deploy github pages
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: ./publish

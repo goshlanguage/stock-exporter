@@ -14,11 +14,11 @@ spec:
     spec:
       containers:
       - name: stock-exporter
-        image:
-          repository: {{ .Values.image.repository }}
-          pullPolicy: {{ .Values.image.pullPolicy }}
-          tag: {{ .Values.image.tag }}
+        image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+        imagePullPolicy: {{ .Values.image.pullPolicy }}
         command: ["/bin/stock-exporter"]
+        ports:
+          - containerPort: 9090
         resources:
           limits:
             cpu: {{ .Values.resources.limits.cpu }}

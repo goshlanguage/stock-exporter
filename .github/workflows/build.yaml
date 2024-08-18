@@ -20,7 +20,7 @@ jobs:
         with:
           registry: ghcr.io
           username: goshlanguage
-          password: ${{ secrets.GHCR_TOKEN }}
+          password: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Build and push
         id: docker_build
@@ -30,4 +30,4 @@ jobs:
           tags: |
             ghcr.io/goshlanguage/stock-exporter:latest
             ghcr.io/goshlanguage/lab:${{ github.sha }}
-          platforms: linux/amd64,linux/arm64,linux/riscv64
+          platforms: linux/amd64,linux/arm64

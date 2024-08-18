@@ -3,11 +3,11 @@ entries:
   stock-exporter:
   - apiVersion: v2
     appVersion: 1.0.0
-    created: "2024-08-18T03:00:47.710579705Z"
+    created: "2024-08-18T03:16:54.286598024Z"
     description: A Helm chart for Kubernetes to deploy a stock price exporter.
-    digest: c6b3c44bf1e3074f5ba1829b298166995fde89c7566132aed6150be0972b5f54
+    digest: 37bc31c9d8fe08a0c774543b69703ff60e30f1767fa0d8e059df0886e21e1843
     name: stock-exporter
     urls:
-    - https://goshlanguage.github.io/stock-exporter/release/stock-exporter-0.1.5.tgz
-    version: 0.1.5
-generated: "2024-08-18T03:00:47.710217354Z"
+    - https://goshlanguage.github.io/stock-exporter/release/stock-exporter-0.1.6.tgz
+    version: 0.1.6
+generated: "2024-08-18T03:16:54.286288966Z"

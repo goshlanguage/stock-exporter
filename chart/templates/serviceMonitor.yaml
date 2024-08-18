@@ -1,0 +1,17 @@
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: stock-exporter-monitor
+  labels:
+    release: prometheus
+spec:
+  selector:
+    matchLabels:
+      app: stock-exporter
+  endpoints:
+  - port: 9090
+    path: /metrics
+    interval: 30s
+  namespaceSelector:
+    matchNames:
+    - {{ .Release.Namespace }}

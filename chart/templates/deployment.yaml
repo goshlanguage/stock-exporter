@@ -15,7 +15,7 @@ spec:
       containers:
       - name: stock-exporter
         image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
-        pullPolicy: {{ .Values.image.pullPolicy }}
+        imagePullPolicy: {{ .Values.image.pullPolicy }}
         command: ["/bin/stock-exporter"]
         ports:
           - containerPort: 9090

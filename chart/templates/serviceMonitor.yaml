@@ -9,7 +9,7 @@ spec:
     matchLabels:
       app: stock-exporter
   endpoints:
-  - port: 9090
+  - port: "9090"
     path: /metrics
     interval: 30s
   namespaceSelector:

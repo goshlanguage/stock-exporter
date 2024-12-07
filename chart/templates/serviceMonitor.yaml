@@ -2,7 +2,7 @@ apiVersion: monitoring.coreos.com/v1
 kind: ServiceMonitor
 metadata:
   name: stock-exporter-monitor
-  namespace: monitoring
+  namespace: stock-exporter
 spec:
   selector:
     matchLabels:

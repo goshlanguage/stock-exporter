@@ -2,11 +2,8 @@ apiVersion: monitoring.coreos.com/v1
 kind: ServiceMonitor
 metadata:
   name: stock-exporter-monitor
-  namespace: stock-exporter
+  namespace: {{ .Release.Namespace }}
 spec:
-  selector:
-    matchLabels:
-      app: stock-exporter
   endpoints:
   - port: "9090"
     path: /metrics
@@ -14,3 +11,6 @@ spec:
   namespaceSelector:
     matchNames:
     - {{ .Release.Namespace }}
+  selector:
+    matchLabels:
+      app: stock-exporter

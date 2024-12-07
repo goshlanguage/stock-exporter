@@ -14,10 +14,18 @@ spec:
         app: stock-exporter
     spec:
       containers:
-      - name: stock-exporter
+      - command: ["/bin/stock-exporter"]
         image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
-        imagePullPolicy: {{ .Values.image.pullPolicy }}
-        command: ["/bin/stock-exporter"]
+        imagePullPolicy: {{ .Values.image.pullPolicy }}        
+        livenessProbe:
+          httpGet:
+            path: /healthz
+            port: 9090
+          initialDelaySeconds: 30
+          timeoutSeconds: 1
+          periodSeconds: 10
+          successThreshold: 1
+        name: stock-exporter
         ports:
           - containerPort: 9090
         resources:

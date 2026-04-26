@@ -22,13 +22,12 @@ jobs:
         mkdir release
 
         # package all charts
-        ls charts | while read chart; do
-          cd charts/$chart
-          helm dep up
-          cd -
+        cd chart/
+        helm dep up
 
-          helm package charts/$chart -d release/; 
-        done
+        cd -
+
+        helm package chart/ -d release/; 
 
         helm repo index release --url https://goshlanguage.github.io/release
 

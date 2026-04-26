@@ -2,6 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: stock-exporter
+  namespace: {{ .Release.Namespace }}
 spec:
   replicas: {{ .Values.replicaCount }}
   selector:
@@ -13,12 +14,20 @@ spec:
         app: stock-exporter
     spec:
       containers:
-      - name: stock-exporter
-        image:
-          repository: {{ .Values.image.repository }}
-          pullPolicy: {{ .Values.image.pullPolicy }}
-          tag: {{ .Values.image.tag }}
-        command: ["/bin/stock-exporter"]
+      - command: ["/bin/stock-exporter"]
+        image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+        imagePullPolicy: {{ .Values.image.pullPolicy }}        
+        livenessProbe:
+          httpGet:
+            path: /healthz
+            port: 9090
+          initialDelaySeconds: 30
+          timeoutSeconds: 1
+          periodSeconds: 10
+          successThreshold: 1
+        name: stock-exporter
+        ports:
+          - containerPort: 9090
         resources:
           limits:
             cpu: {{ .Values.resources.limits.cpu }}

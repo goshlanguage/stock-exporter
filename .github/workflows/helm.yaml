@@ -25,7 +25,7 @@ jobs:
         helm dep up
         helm package chart -d release/; 
 
-        helm repo index release --url https://goshlanguage.github.io/release
+        helm repo index release --url https://goshlanguage.github.io/stock-exporter/release
 
         mkdir publish
         mv release publish/

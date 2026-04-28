@@ -1,4 +1,4 @@
-FROM cgr.dev/chainguard/go:latest as build
+FROM golang:1.21-alpine as build
 
 WORKDIR /go/src/github.com/goshlanguage/stock-exporter
 COPY . .

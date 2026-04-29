@@ -21,8 +21,7 @@ jobs:
       run: |
         mkdir release
 
-        # package all charts
-        helm dep up
+        # package chart
         helm package chart -d release/; 
 
         helm repo index release --url https://goshlanguage.github.io/stock-exporter/release

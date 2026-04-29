@@ -29,5 +29,6 @@ jobs:
           push: true
           tags: |
             ghcr.io/goshlanguage/stock-exporter:latest
+            ghcr.io/goshlanguage/stock-exporter:1.0.0
             ghcr.io/goshlanguage/lab:${{ github.sha }}
           platforms: linux/amd64,linux/arm64,linux/riscv64
